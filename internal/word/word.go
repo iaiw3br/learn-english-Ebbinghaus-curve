@@ -5,35 +5,35 @@ import (
 )
 
 type CreateWord struct {
-	Name          string
-	Example       []*Example
-	DefinitionENG string
-	DefinitionRUS string
-	Date          time.Time
+	Name           string
+	Example        []*Example
+	DefinitionENG  string
+	DefinitionRUS  string
+	RepetitionDate time.Time
 }
 
 type Word struct {
-	Name          string
-	Example       []*Example
-	DefinitionENG string
-	DefinitionRUS string
-	Date          time.Time
-	IsKnown       bool
+	Name           string
+	Example        []*Example
+	DefinitionENG  string
+	DefinitionRUS  string
+	RepetitionDate time.Time
+	IsKnown        bool
 }
 
 type Example struct {
 	Sentence string
 }
 
-// Create returns new Word
-func Create(cw CreateWord) Word {
+// convertToWord returns Word from CreateWord
+func convertToWord(cw CreateWord) Word {
 	return Word{
-		Name:          cw.Name,
-		Example:       cw.Example,
-		DefinitionRUS: cw.DefinitionRUS,
-		DefinitionENG: cw.DefinitionENG,
-		Date:          cw.Date,
-		IsKnown:       false,
+		Name:           cw.Name,
+		Example:        cw.Example,
+		DefinitionRUS:  cw.DefinitionRUS,
+		DefinitionENG:  cw.DefinitionENG,
+		RepetitionDate: cw.RepetitionDate,
+		IsKnown:        false,
 	}
 }
 
@@ -45,5 +45,5 @@ func (w *Word) Know() {
 // NotKnow changes IsKnown = false and Date
 func (w *Word) NotKnow(now time.Time) {
 	w.IsKnown = false
-	w.Date = now
+	w.RepetitionDate = now
 }

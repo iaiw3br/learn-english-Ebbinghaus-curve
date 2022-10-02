@@ -9,12 +9,12 @@ import (
 
 func TestWord_Create(t *testing.T) {
 	type fields struct {
-		Name          string
-		Example       []*Example
-		DefinitionENG string
-		DefinitionRUS string
-		Date          time.Time
-		IsKnown       bool
+		Name           string
+		Example        []*Example
+		DefinitionENG  string
+		DefinitionRUS  string
+		RepetitionDate time.Time
+		IsKnown        bool
 	}
 	type args struct {
 		cw CreateWord
@@ -38,29 +38,29 @@ func TestWord_Create(t *testing.T) {
 						Sentence: "Where did you park your car?",
 					},
 				},
-				DefinitionENG: "a vehicle with an engine",
-				DefinitionRUS: "машина, автомобиль",
-				Date:          now,
-				IsKnown:       false,
+				DefinitionENG:  "a vehicle with an engine",
+				DefinitionRUS:  "машина, автомобиль",
+				RepetitionDate: now,
+				IsKnown:        false,
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			w := CreateWord{
-				Name:          tt.fields.Name,
-				Example:       tt.fields.Example,
-				DefinitionENG: tt.fields.DefinitionENG,
-				DefinitionRUS: tt.fields.DefinitionRUS,
-				Date:          tt.fields.Date,
+				Name:           tt.fields.Name,
+				Example:        tt.fields.Example,
+				DefinitionENG:  tt.fields.DefinitionENG,
+				DefinitionRUS:  tt.fields.DefinitionRUS,
+				RepetitionDate: tt.fields.RepetitionDate,
 			}
-			word := Create(w)
+			word := convertToWord(w)
 
 			assert.Equal(t, tt.fields.Name, word.Name)
 			assert.Equal(t, tt.fields.Example, word.Example)
 			assert.Equal(t, tt.fields.DefinitionENG, word.DefinitionENG)
 			assert.Equal(t, tt.fields.DefinitionRUS, word.DefinitionRUS)
-			assert.Equal(t, tt.fields.Date, word.Date)
+			assert.Equal(t, tt.fields.RepetitionDate, word.RepetitionDate)
 			assert.Equal(t, tt.fields.IsKnown, word.IsKnown)
 		})
 	}
@@ -128,12 +128,12 @@ func TestWord_NotKnow(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			w := &Word{
-				Date:    tt.fields.Date,
-				IsKnown: tt.fields.IsKnown,
+				RepetitionDate: tt.fields.Date,
+				IsKnown:        tt.fields.IsKnown,
 			}
 			w.NotKnow(tt.args.now)
 			assert.Equal(t, tt.expected.IsKnown, w.IsKnown)
-			assert.Equal(t, tt.expected.Date, w.Date)
+			assert.Equal(t, tt.expected.Date, w.RepetitionDate)
 		})
 	}
 }
