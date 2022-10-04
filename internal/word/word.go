@@ -35,22 +35,8 @@ type Word struct {
 	// Дата следующего повторения
 	RepetitionDate time.Time
 
-	//
-	IsKnown bool
-
 	// Число повторений, в зависимости от этого значения назначается следующее повторение
 	RepetitionNumber int
-}
-
-// Know changes IsKnown = true
-func (w *Word) Know() {
-	w.IsKnown = true
-}
-
-// NotKnow changes IsKnown = false and Date
-func (w *Word) NotKnow(now time.Time) {
-	w.IsKnown = false
-	w.RepetitionDate = now
 }
 
 // SetNextRepetition Устанавливает дату следующего повторения
