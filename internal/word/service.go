@@ -14,6 +14,11 @@ func MarkKnown(w Word) Word {
 	return w
 }
 
+func MarkUnknown(w Word) Word {
+	w.MarkUnknown()
+	return w
+}
+
 // convertToWord returns Word from CreateWord
 func convertToWord(cw CreateWord) Word {
 	return Word{

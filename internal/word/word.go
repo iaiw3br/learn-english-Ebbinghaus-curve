@@ -73,3 +73,8 @@ func (w *Word) SetNextRepetition(now time.Time) {
 func (w *Word) MarkKnown() {
 	w.RepetitionNumber = +1
 }
+
+// MarkUnknown сбрасывает значение для повторного изучения слова
+func (w *Word) MarkUnknown() {
+	w.RepetitionNumber = 1
+}

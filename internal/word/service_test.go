@@ -116,3 +116,31 @@ func TestMarkKnown(t *testing.T) {
 		})
 	}
 }
+
+func TestMarkUnknown(t *testing.T) {
+	type args struct {
+		w Word
+	}
+	tests := []struct {
+		name string
+		args args
+		want Word
+	}{
+		{
+			name: "Mark unknown",
+			args: args{
+				w: Word{
+					RepetitionNumber: 2,
+				},
+			},
+			want: Word{
+				RepetitionNumber: 1,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equalf(t, tt.want, MarkUnknown(tt.args.w), "MarkUnknown(%v)", tt.args.w)
+		})
+	}
+}
