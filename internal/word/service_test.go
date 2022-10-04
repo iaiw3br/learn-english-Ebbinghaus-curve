@@ -36,7 +36,7 @@ func TestCreate(t *testing.T) {
 				},
 				DefinitionENG:    "a vehicle with an engine",
 				DefinitionRUS:    "машина, автомобиль",
-				RepetitionNumber: 0,
+				RepetitionNumber: ZeroRepetition,
 				RepetitionDate:   now,
 			},
 		},
@@ -76,7 +76,7 @@ func Test_convertToWord(t *testing.T) {
 				},
 				DefinitionENG:    "a vehicle with an engine",
 				DefinitionRUS:    "машина, автомобиль",
-				RepetitionNumber: 0,
+				RepetitionNumber: ZeroRepetition,
 			},
 		},
 	}
@@ -100,11 +100,11 @@ func TestMarkKnown(t *testing.T) {
 			name: "Mark known",
 			args: args{
 				w: Word{
-					RepetitionNumber: 3,
+					RepetitionNumber: ThirdRepetition,
 				},
 			},
 			want: Word{
-				RepetitionNumber: 4,
+				RepetitionNumber: FourRepetition,
 			},
 		},
 	}
@@ -128,11 +128,11 @@ func TestMarkUnknown(t *testing.T) {
 			name: "Mark unknown",
 			args: args{
 				w: Word{
-					RepetitionNumber: 2,
+					RepetitionNumber: SecondRepetition,
 				},
 			},
 			want: Word{
-				RepetitionNumber: 1,
+				RepetitionNumber: FirstRepetition,
 			},
 		},
 	}

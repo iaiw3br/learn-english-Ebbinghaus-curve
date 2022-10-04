@@ -12,6 +12,14 @@ const (
 	monthsToAdd  = 2
 )
 
+const (
+	ZeroRepetition = iota
+	FirstRepetition
+	SecondRepetition
+	ThirdRepetition
+	FourRepetition
+)
+
 type CreateWord struct {
 	Name          string
 	Sentences     []string
@@ -42,15 +50,15 @@ type Word struct {
 // SetNextRepetition устанавливает дату следующего повторения
 func (w *Word) SetNextRepetition(now time.Time) {
 	switch w.RepetitionNumber {
-	case 0:
+	case ZeroRepetition:
 		w.RepetitionDate = now
-	case 1:
+	case FirstRepetition:
 		w.RepetitionDate = now.Add(time.Minute * minutesToAdd)
-	case 2:
+	case SecondRepetition:
 		w.RepetitionDate = now.AddDate(0, 0, daysToAdd)
-	case 3:
+	case ThirdRepetition:
 		w.RepetitionDate = now.AddDate(0, 0, oneWeekDays*weeksToAdd)
-	case 4:
+	case FourRepetition:
 		w.RepetitionDate = now.AddDate(0, monthsToAdd, 0)
 	}
 }
@@ -62,5 +70,5 @@ func (w *Word) MarkKnown() {
 
 // MarkUnknown сбрасывает значение для повторного изучения слова
 func (w *Word) MarkUnknown() {
-	w.RepetitionNumber = 1
+	w.RepetitionNumber = FirstRepetition
 }

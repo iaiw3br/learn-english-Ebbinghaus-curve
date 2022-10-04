@@ -27,7 +27,7 @@ func TestWord_SetNextRepetition(t *testing.T) {
 			args: args{now: now},
 			fields: fields{
 				RepetitionDate:   now,
-				RepetitionNumber: 0,
+				RepetitionNumber: ZeroRepetition,
 			},
 			want: fields{
 				RepetitionDate: now,
@@ -38,7 +38,7 @@ func TestWord_SetNextRepetition(t *testing.T) {
 			args: args{now: now},
 			fields: fields{
 				RepetitionDate:   now,
-				RepetitionNumber: 1,
+				RepetitionNumber: FirstRepetition,
 			},
 			want: fields{
 				RepetitionDate: now.Add(time.Minute * minutesToAdd),
@@ -49,7 +49,7 @@ func TestWord_SetNextRepetition(t *testing.T) {
 			args: args{now: now},
 			fields: fields{
 				RepetitionDate:   now,
-				RepetitionNumber: 2,
+				RepetitionNumber: SecondRepetition,
 			},
 			want: fields{
 				RepetitionDate: now.AddDate(0, 0, daysToAdd),
@@ -60,7 +60,7 @@ func TestWord_SetNextRepetition(t *testing.T) {
 			args: args{now: now},
 			fields: fields{
 				RepetitionDate:   now,
-				RepetitionNumber: 3,
+				RepetitionNumber: ThirdRepetition,
 			},
 			want: fields{
 				RepetitionDate: now.AddDate(0, 0, oneWeekDays*weeksToAdd),
@@ -71,7 +71,7 @@ func TestWord_SetNextRepetition(t *testing.T) {
 			args: args{now: now},
 			fields: fields{
 				RepetitionDate:   now,
-				RepetitionNumber: 4,
+				RepetitionNumber: FourRepetition,
 			},
 			want: fields{
 				RepetitionDate: now.AddDate(0, monthsToAdd, 0),
@@ -102,10 +102,10 @@ func TestWord_MarkUnknown(t *testing.T) {
 		{
 			name: "Mark unknown",
 			fields: fields{
-				RepetitionNumber: 4,
+				RepetitionNumber: FourRepetition,
 			},
 			want: fields{
-				RepetitionNumber: 1,
+				RepetitionNumber: FirstRepetition,
 			},
 		},
 	}
@@ -132,10 +132,10 @@ func TestWord_MarkKnown(t *testing.T) {
 		{
 			name: "Mark known",
 			fields: fields{
-				RepetitionNumber: 3,
+				RepetitionNumber: ThirdRepetition,
 			},
 			want: fields{
-				RepetitionNumber: 4,
+				RepetitionNumber: FourRepetition,
 			},
 		},
 	}
