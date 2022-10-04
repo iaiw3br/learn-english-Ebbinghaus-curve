@@ -1,7 +1,10 @@
 package word
 
-func Create(cw CreateWord) Word {
+import "time"
+
+func Create(cw CreateWord, now time.Time) Word {
 	word := convertToWord(cw)
+	word.SetNextRepetition(now)
 
 	return word
 }

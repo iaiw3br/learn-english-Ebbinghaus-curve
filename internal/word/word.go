@@ -4,6 +4,14 @@ import (
 	"time"
 )
 
+const (
+	oneWeekDays  = 7
+	minutesToAdd = 30
+	daysToAdd    = 1
+	weeksToAdd   = 2
+	monthsToAdd  = 2
+)
+
 type CreateWord struct {
 	Name          string
 	Sentences     []string
@@ -43,4 +51,20 @@ func (w *Word) Know() {
 func (w *Word) NotKnow(now time.Time) {
 	w.IsKnown = false
 	w.RepetitionDate = now
+}
+
+// Устанавливает дату следующего повторения
+func (w *Word) SetNextRepetition(now time.Time) {
+	switch w.RepetitionNumber {
+	case 0:
+		w.RepetitionDate = now
+	case 1:
+		w.RepetitionDate = now.Add(time.Minute * minutesToAdd)
+	case 2:
+		w.RepetitionDate = now.AddDate(0, 0, daysToAdd)
+	case 3:
+		w.RepetitionDate = now.AddDate(0, 0, oneWeekDays*weeksToAdd)
+	case 4:
+		w.RepetitionDate = now.AddDate(0, monthsToAdd, 0)
+	}
 }

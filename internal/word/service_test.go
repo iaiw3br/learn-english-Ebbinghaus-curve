@@ -2,6 +2,7 @@ package word
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -10,6 +11,7 @@ func TestCreate(t *testing.T) {
 	type args struct {
 		cw CreateWord
 	}
+	now := time.Now()
 	tests := []struct {
 		name string
 		args args
@@ -36,12 +38,13 @@ func TestCreate(t *testing.T) {
 				DefinitionRUS:    "машина, автомобиль",
 				IsKnown:          false,
 				RepetitionNumber: 0,
+				RepetitionDate:   now,
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equalf(t, tt.want, Create(tt.args.cw), "Create(%v)", tt.args.cw)
+			assert.Equalf(t, tt.want, Create(tt.args.cw, now), "Create(%v)", tt.args.cw)
 		})
 	}
 }
