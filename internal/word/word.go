@@ -39,7 +39,7 @@ type Word struct {
 	RepetitionNumber int
 }
 
-// SetNextRepetition Устанавливает дату следующего повторения
+// SetNextRepetition устанавливает дату следующего повторения
 func (w *Word) SetNextRepetition(now time.Time) {
 	switch w.RepetitionNumber {
 	case 0:
