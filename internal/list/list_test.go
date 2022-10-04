@@ -27,13 +27,9 @@ func TestCreate(t *testing.T) {
 					Words: []word.Word{
 						{
 							Name: "car",
-							Example: []*word.Example{
-								{
-									Sentence: "I go to work by car.",
-								},
-								{
-									Sentence: "Where did you park your car?",
-								},
+							Sentences: []string{
+								"I go to work by car",
+								"Where did you park your car?",
 							},
 							DefinitionENG:  "a vehicle with an engine",
 							DefinitionRUS:  "машина, автомобиль",
@@ -76,13 +72,9 @@ func TestList_AddWord(t *testing.T) {
 				Words: []word.Word{
 					{
 						Name: "car",
-						Example: []*word.Example{
-							{
-								Sentence: "I go to work by car",
-							},
-							{
-								Sentence: "Where did you park your car?",
-							},
+						Sentences: []string{
+							"I go to work by car",
+							"Where did you park your car?",
 						},
 						DefinitionENG:  "a vehicle with an engine",
 						DefinitionRUS:  "машина, автомобиль",
@@ -94,10 +86,8 @@ func TestList_AddWord(t *testing.T) {
 			args: args{
 				w: word.Word{
 					Name: "bus",
-					Example: []*word.Example{
-						{
-							Sentence: "a school bus",
-						},
+					Sentences: []string{
+						"a school bus",
 					},
 					DefinitionENG:  "a large vehicle that carries passengers by road, usually along a fixed route",
 					DefinitionRUS:  "автобус",
@@ -110,13 +100,9 @@ func TestList_AddWord(t *testing.T) {
 				Words: []word.Word{
 					{
 						Name: "car",
-						Example: []*word.Example{
-							{
-								Sentence: "I go to work by car",
-							},
-							{
-								Sentence: "Where did you park your car?",
-							},
+						Sentences: []string{
+							"I go to work by car",
+							"Where did you park your car?",
 						},
 						DefinitionENG:  "a vehicle with an engine",
 						DefinitionRUS:  "машина, автомобиль",
@@ -125,10 +111,8 @@ func TestList_AddWord(t *testing.T) {
 					},
 					{
 						Name: "bus",
-						Example: []*word.Example{
-							{
-								Sentence: "a school bus",
-							},
+						Sentences: []string{
+							"a school bus",
 						},
 						DefinitionENG:  "a large vehicle that carries passengers by road, usually along a fixed route",
 						DefinitionRUS:  "автобус",

@@ -19,26 +19,18 @@ func TestCreate(t *testing.T) {
 			name: "Create word",
 			args: args{CreateWord{
 				Name: "car",
-				Example: []*Example{
-					{
-						Sentence: "I go to work by car.",
-					},
-					{
-						Sentence: "Where did you park your car?",
-					},
+				Sentences: []string{
+					"I go to work by car",
+					"Where did you park your car?",
 				},
 				DefinitionENG: "a vehicle with an engine",
 				DefinitionRUS: "машина, автомобиль",
 			}},
 			want: Word{
 				Name: "car",
-				Example: []*Example{
-					{
-						Sentence: "I go to work by car.",
-					},
-					{
-						Sentence: "Where did you park your car?",
-					},
+				Sentences: []string{
+					"I go to work by car",
+					"Where did you park your car?",
 				},
 				DefinitionENG:    "a vehicle with an engine",
 				DefinitionRUS:    "машина, автомобиль",
@@ -67,26 +59,18 @@ func Test_convertToWord(t *testing.T) {
 			name: "Create word",
 			args: args{CreateWord{
 				Name: "car",
-				Example: []*Example{
-					{
-						Sentence: "I go to work by car.",
-					},
-					{
-						Sentence: "Where did you park your car?",
-					},
+				Sentences: []string{
+					"I go to work by car",
+					"Where did you park your car?",
 				},
 				DefinitionENG: "a vehicle with an engine",
 				DefinitionRUS: "машина, автомобиль",
 			}},
 			want: Word{
 				Name: "car",
-				Example: []*Example{
-					{
-						Sentence: "I go to work by car.",
-					},
-					{
-						Sentence: "Where did you park your car?",
-					},
+				Sentences: []string{
+					"I go to work by car",
+					"Where did you park your car?",
 				},
 				DefinitionENG:    "a vehicle with an engine",
 				DefinitionRUS:    "машина, автомобиль",

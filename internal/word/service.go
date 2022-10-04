@@ -10,7 +10,7 @@ func Create(cw CreateWord) Word {
 func convertToWord(cw CreateWord) Word {
 	return Word{
 		Name:          cw.Name,
-		Example:       cw.Example,
+		Sentences:     cw.Sentences,
 		DefinitionRUS: cw.DefinitionRUS,
 		DefinitionENG: cw.DefinitionENG,
 	}

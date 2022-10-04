@@ -6,7 +6,7 @@ import (
 
 type CreateWord struct {
 	Name          string
-	Example       []*Example
+	Sentences     []string
 	DefinitionENG string
 	DefinitionRUS string
 }
@@ -15,7 +15,8 @@ type Word struct {
 	// Наименование слова
 	Name string
 
-	Example []*Example
+	// Примеры предложений, в которых используется слово
+	Sentences []string
 
 	// Описание слова на английском
 	DefinitionENG string
@@ -31,11 +32,6 @@ type Word struct {
 
 	// Число повторений, в зависимости от этого значения назначается следующее повторение
 	RepetitionNumber int
-}
-
-// Примеры предложений, где используется слово
-type Example struct {
-	Sentence string
 }
 
 // Know changes IsKnown = true
