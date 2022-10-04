@@ -64,11 +64,10 @@ func TestWord_Create(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			w := CreateWord{
-				Name:           tt.fields.Name,
-				Example:        tt.fields.Example,
-				DefinitionENG:  tt.fields.DefinitionENG,
-				DefinitionRUS:  tt.fields.DefinitionRUS,
-				RepetitionDate: tt.fields.RepetitionDate,
+				Name:          tt.fields.Name,
+				Example:       tt.fields.Example,
+				DefinitionENG: tt.fields.DefinitionENG,
+				DefinitionRUS: tt.fields.DefinitionRUS,
 			}
 			word := convertToWord(w)
 
