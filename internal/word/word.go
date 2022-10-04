@@ -71,7 +71,7 @@ func (w *Word) SetNextRepetition(now time.Time) {
 
 // MarkKnown устанавливает значение для следующего повторения
 func (w *Word) MarkKnown() {
-	w.RepetitionNumber = +1
+	w.RepetitionNumber += 1
 }
 
 // MarkUnknown сбрасывает значение для повторного изучения слова
