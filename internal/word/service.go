@@ -9,6 +9,11 @@ func Create(cw CreateWord, now time.Time) Word {
 	return word
 }
 
+func MarkKnown(w Word) Word {
+	w.MarkKnown()
+	return w
+}
+
 // convertToWord returns Word from CreateWord
 func convertToWord(cw CreateWord) Word {
 	return Word{

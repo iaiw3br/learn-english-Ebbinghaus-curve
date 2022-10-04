@@ -68,3 +68,8 @@ func (w *Word) SetNextRepetition(now time.Time) {
 		w.RepetitionDate = now.AddDate(0, monthsToAdd, 0)
 	}
 }
+
+// MarkKnown устанавливает значение для следующего повторения
+func (w *Word) MarkKnown() {
+	w.RepetitionNumber = +1
+}
