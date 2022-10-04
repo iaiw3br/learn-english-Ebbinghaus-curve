@@ -53,7 +53,7 @@ func (w *Word) NotKnow(now time.Time) {
 	w.RepetitionDate = now
 }
 
-// Устанавливает дату следующего повторения
+// SetNextRepetition Устанавливает дату следующего повторения
 func (w *Word) SetNextRepetition(now time.Time) {
 	switch w.RepetitionNumber {
 	case 0:
