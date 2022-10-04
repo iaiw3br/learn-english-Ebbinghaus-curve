@@ -43,6 +43,22 @@ func TestWord_Create(t *testing.T) {
 				RepetitionDate: now,
 				IsKnown:        false,
 			},
+			want: Word{
+				Name: "car",
+				Example: []*Example{
+					{
+						Sentence: "I go to work by car.",
+					},
+					{
+						Sentence: "Where did you park your car?",
+					},
+				},
+				DefinitionENG:    "a vehicle with an engine",
+				DefinitionRUS:    "машина, автомобиль",
+				RepetitionDate:   now,
+				IsKnown:          false,
+				RepetitionNumber: 0,
+			},
 		},
 	}
 	for _, tt := range tests {
@@ -56,12 +72,13 @@ func TestWord_Create(t *testing.T) {
 			}
 			word := convertToWord(w)
 
-			assert.Equal(t, tt.fields.Name, word.Name)
-			assert.Equal(t, tt.fields.Example, word.Example)
-			assert.Equal(t, tt.fields.DefinitionENG, word.DefinitionENG)
-			assert.Equal(t, tt.fields.DefinitionRUS, word.DefinitionRUS)
-			assert.Equal(t, tt.fields.RepetitionDate, word.RepetitionDate)
-			assert.Equal(t, tt.fields.IsKnown, word.IsKnown)
+			assert.Equal(t, tt.want.Name, word.Name)
+			assert.Equal(t, tt.want.Example, word.Example)
+			assert.Equal(t, tt.want.DefinitionENG, word.DefinitionENG)
+			assert.Equal(t, tt.want.DefinitionRUS, word.DefinitionRUS)
+			assert.Equal(t, tt.want.RepetitionDate, word.RepetitionDate)
+			assert.Equal(t, tt.want.IsKnown, word.IsKnown)
+			assert.Equal(t, tt.want.RepetitionNumber, word.RepetitionNumber)
 		})
 	}
 }

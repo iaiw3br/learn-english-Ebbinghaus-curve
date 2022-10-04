@@ -19,6 +19,8 @@ type Word struct {
 	DefinitionRUS  string
 	RepetitionDate time.Time
 	IsKnown        bool
+	// Число повторений, в зависимости от этого значения назначается следующее повторение
+	RepetitionNumber int
 }
 
 type Example struct {
@@ -33,7 +35,6 @@ func convertToWord(cw CreateWord) Word {
 		DefinitionRUS:  cw.DefinitionRUS,
 		DefinitionENG:  cw.DefinitionENG,
 		RepetitionDate: cw.RepetitionDate,
-		IsKnown:        false,
 	}
 }
 
