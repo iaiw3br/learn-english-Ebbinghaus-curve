@@ -102,11 +102,11 @@ func TestMarkKnown(t *testing.T) {
 			name: "Mark known",
 			args: args{
 				w: Word{
-					RepetitionNumber: 0,
+					RepetitionNumber: 3,
 				},
 			},
 			want: Word{
-				RepetitionNumber: 1,
+				RepetitionNumber: 4,
 			},
 		},
 	}

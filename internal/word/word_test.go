@@ -191,3 +191,33 @@ func TestWord_MarkUnknown(t *testing.T) {
 		})
 	}
 }
+
+func TestWord_MarkKnown(t *testing.T) {
+	type fields struct {
+		RepetitionNumber int
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		want   fields
+	}{
+		{
+			name: "Mark known",
+			fields: fields{
+				RepetitionNumber: 3,
+			},
+			want: fields{
+				RepetitionNumber: 4,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			w := &Word{
+				RepetitionNumber: tt.fields.RepetitionNumber,
+			}
+			w.MarkKnown()
+			assert.Equal(t, tt.want.RepetitionNumber, w.RepetitionNumber)
+		})
+	}
+}
