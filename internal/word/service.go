@@ -2,6 +2,7 @@ package word
 
 import "time"
 
+// Create создаёт объект Word
 func Create(cw CreateWord, now time.Time) Word {
 	word := convertToWord(cw)
 	word.SetNextRepetition(now)
@@ -19,7 +20,7 @@ func MarkUnknown(w Word) Word {
 	return w
 }
 
-// convertToWord returns Word from CreateWord
+// convertToWord возвращает Word из CreateWord
 func convertToWord(cw CreateWord) Word {
 	return Word{
 		Name:          cw.Name,
