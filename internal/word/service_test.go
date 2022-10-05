@@ -27,6 +27,7 @@ func TestCreate(t *testing.T) {
 				},
 				DefinitionENG: "a vehicle with an engine",
 				DefinitionRUS: "машина, автомобиль",
+				ListID:        1,
 			}},
 			want: Word{
 				Name: "car",
@@ -38,6 +39,7 @@ func TestCreate(t *testing.T) {
 				DefinitionRUS:    "машина, автомобиль",
 				RepetitionNumber: ZeroRepetition,
 				RepetitionDate:   now,
+				ListID:           1,
 			},
 		},
 	}
@@ -67,6 +69,7 @@ func Test_convertToWord(t *testing.T) {
 				},
 				DefinitionENG: "a vehicle with an engine",
 				DefinitionRUS: "машина, автомобиль",
+				ListID:        1,
 			}},
 			want: Word{
 				Name: "car",
@@ -77,6 +80,7 @@ func Test_convertToWord(t *testing.T) {
 				DefinitionENG:    "a vehicle with an engine",
 				DefinitionRUS:    "машина, автомобиль",
 				RepetitionNumber: ZeroRepetition,
+				ListID:           1,
 			},
 		},
 	}

@@ -25,6 +25,7 @@ type CreateWord struct {
 	Sentences     []string `json:"sentences"`
 	DefinitionENG string   `json:"definitionENG"`
 	DefinitionRUS string   `json:"definitionRUS"`
+	ListID        int      `json:"listID"`
 }
 
 type Word struct {
@@ -45,6 +46,9 @@ type Word struct {
 
 	// Число повторений, в зависимости от этого значения назначается следующее повторение
 	RepetitionNumber int
+
+	// Идентификатор списка
+	ListID int
 }
 
 // SetNextRepetition устанавливает дату следующего повторения

@@ -26,5 +26,6 @@ func convertToWord(cw CreateWord) Word {
 		Sentences:     cw.Sentences,
 		DefinitionRUS: cw.DefinitionRUS,
 		DefinitionENG: cw.DefinitionENG,
+		ListID:        cw.ListID,
 	}
 }
