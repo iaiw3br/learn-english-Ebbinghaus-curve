@@ -21,10 +21,10 @@ const (
 )
 
 type CreateWord struct {
-	Name          string
-	Sentences     []string
-	DefinitionENG string
-	DefinitionRUS string
+	Name          string   `json:"name"`
+	Sentences     []string `json:"sentences"`
+	DefinitionENG string   `json:"definitionENG"`
+	DefinitionRUS string   `json:"definitionRUS"`
 }
 
 type Word struct {
