@@ -14,7 +14,12 @@ import (
 )
 
 const (
-	listsURL = "/lists"
+	listsURL           = "/lists"
+	listsRepetitionURL = listsURL + "/repetition"
+)
+
+const (
+	intervalRepeatHours = 6
 )
 
 type handler struct {
@@ -24,6 +29,7 @@ type handler struct {
 
 func (h *handler) Register(router *httprouter.Router) {
 	router.HandlerFunc(http.MethodPost, listsURL, h.Create)
+	router.HandlerFunc(http.MethodGet, listsRepetitionURL, h.Repeat)
 }
 
 func NewHandler(listStore Store, wordStore word.Store) handlers.Handler {
@@ -68,4 +74,23 @@ func (h *handler) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusNoContent)
+}
+
+func (h *handler) Repeat(w http.ResponseWriter, r *http.Request) {
+	dateRepeat := time.Now().Add(time.Hour * intervalRepeatHours)
+
+	list, err := h.listStore.Repeat(context.Background(), dateRepeat)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	listBytes, err := json.Marshal(list)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write(listBytes)
 }
