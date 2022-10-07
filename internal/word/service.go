@@ -4,7 +4,7 @@ import "time"
 
 // Create создаёт объект Word
 func Create(cw CreateWord, now time.Time) Word {
-	word := convertToWord(cw)
+	word := ConvertCreateToWord(cw)
 	word.SetNextRepetition(now)
 
 	return word
@@ -20,8 +20,8 @@ func MarkUnknown(w Word) Word {
 	return w
 }
 
-// convertToWord возвращает Word из CreateWord
-func convertToWord(cw CreateWord) Word {
+// ConvertCreateToWord возвращает Word из CreateWord
+func ConvertCreateToWord(cw CreateWord) Word {
 	return Word{
 		Name:          cw.Name,
 		Sentences:     cw.Sentences,
