@@ -3,20 +3,13 @@ package list
 import "tg-bot-learning-english/internal/word"
 
 type CreateList struct {
-	Name  string
-	Words []word.Word
+	Title string
+	Words []word.CreateWord
 }
 
 type List struct {
-	Name  string
+	Title string
 	Words []word.Word
-}
-
-func Create(cl CreateList) List {
-	return List{
-		Name:  cl.Name,
-		Words: cl.Words,
-	}
 }
 
 func (l *List) AddWord(w word.Word) {
