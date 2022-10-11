@@ -29,6 +29,9 @@ type CreateWord struct {
 }
 
 type Word struct {
+	// Идентификатор
+	ID int
+
 	// Наименование слова
 	Name string
 
