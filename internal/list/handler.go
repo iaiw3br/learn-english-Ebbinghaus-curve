@@ -1,7 +1,6 @@
 package list
 
 import (
-	"context"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
@@ -10,7 +9,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 
 	"tg-bot-learning-english/internal/handlers"
-	"tg-bot-learning-english/internal/word"
 )
 
 const (
@@ -23,8 +21,7 @@ const (
 )
 
 type handler struct {
-	listStore Store
-	wordStore word.Store
+	listService Service
 }
 
 func (h *handler) Register(router *httprouter.Router) {
@@ -32,10 +29,9 @@ func (h *handler) Register(router *httprouter.Router) {
 	router.HandlerFunc(http.MethodGet, listsRepetitionURL, h.Repeat)
 }
 
-func NewHandler(listStore Store, wordStore word.Store) handlers.Handler {
+func NewHandler(listService Service) handlers.Handler {
 	return &handler{
-		listStore: listStore,
-		wordStore: wordStore,
+		listService: listService,
 	}
 }
 
@@ -53,33 +49,19 @@ func (h *handler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ctx := context.Background()
-	list := ConvertCreateToList(cl)
-	listID, err := h.listStore.Create(ctx, list)
+	err = h.listService.Create(cl)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	now := time.Now()
-	for _, cw := range cl.Words {
-		nw := word.Create(cw, now)
-		nw.ListID = listID
-
-		err = h.wordStore.Create(ctx, nw)
-		if err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-			return
-		}
-	}
-
 	w.WriteHeader(http.StatusNoContent)
 }
 
-func (h *handler) Repeat(w http.ResponseWriter, r *http.Request) {
+func (h *handler) Repeat(w http.ResponseWriter, _ *http.Request) {
 	dateRepeat := time.Now().Add(time.Hour * intervalRepeatHours)
 
-	list, err := h.listStore.Repeat(context.Background(), dateRepeat)
+	list, err := h.listService.Repeat(dateRepeat)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return

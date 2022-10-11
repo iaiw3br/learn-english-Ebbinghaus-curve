@@ -25,7 +25,8 @@ func Run(cfg *config.Config) error {
 	wordHandler.Register(router)
 
 	listStore := list.NewStore(postgresqlClient)
-	listHandler := list.NewHandler(listStore, wordStore)
+	listService := list.NewService(listStore, wordStore)
+	listHandler := list.NewHandler(listService)
 	listHandler.Register(router)
 
 	err = http.ListenAndServe(fmt.Sprintf("%s:%s", cfg.Listen.Host, cfg.Listen.Port), router)

@@ -10,7 +10,7 @@ import (
 
 type Store interface {
 	Create(ctx context.Context, list List) (int, error)
-	Repeat(ctx context.Context, date time.Time) ([]List, error)
+	Repeat(ctx context.Context, date time.Time) (*[]List, error)
 }
 
 type repository struct {
@@ -35,7 +35,7 @@ func (r *repository) Create(ctx context.Context, list List) (int, error) {
 	return listID, err
 }
 
-func (r *repository) Repeat(ctx context.Context, date time.Time) ([]List, error) {
+func (r *repository) Repeat(ctx context.Context, date time.Time) (*[]List, error) {
 	query := `
 	SELECT l.title, 
 	       w.name, w.sentences, w.definition_eng, w.definition_rus, 
@@ -76,5 +76,5 @@ func (r *repository) Repeat(ctx context.Context, date time.Time) ([]List, error)
 			list = append(list, l)
 		}
 	}
-	return list, nil
+	return &list, nil
 }
