@@ -18,16 +18,16 @@ const (
 )
 
 type handler struct {
-	wordStore Store
+	wordService Service
 }
 
 func (h handler) Register(router *httprouter.Router) {
 	router.HandlerFunc(http.MethodPost, wordsURL, h.Create)
 }
 
-func NewHandler(wordStore Store) handlers.Handler {
+func NewHandler(wordService Service) handlers.Handler {
 	return handler{
-		wordStore: wordStore,
+		wordService: wordService,
 	}
 }
 
@@ -47,8 +47,10 @@ func (h handler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	word := Create(cw, time.Now())
-	err = h.wordStore.Create(context.Background(), word)
+	ctx := context.Background()
+	now := time.Now()
+
+	err = h.wordService.Create(ctx, cw, now)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		log.Fatal(err)

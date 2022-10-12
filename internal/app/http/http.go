@@ -21,7 +21,8 @@ func Run(cfg *config.Config) error {
 	}
 
 	wordStore := word.NewStore(postgresqlClient)
-	wordHandler := word.NewHandler(wordStore)
+	wordService := word.NewService(wordStore)
+	wordHandler := word.NewHandler(wordService)
 	wordHandler.Register(router)
 
 	listStore := list.NewStore(postgresqlClient)

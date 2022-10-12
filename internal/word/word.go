@@ -79,3 +79,10 @@ func (w *Word) MarkKnown() {
 func (w *Word) MarkUnknown() {
 	w.RepetitionNumber = FirstRepetition
 }
+
+func (cw CreateWord) Create(now time.Time) Word {
+	word := ConvertCreateToWord(cw)
+	word.SetNextRepetition(now)
+
+	return word
+}

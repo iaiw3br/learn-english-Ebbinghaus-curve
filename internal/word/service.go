@@ -1,13 +1,30 @@
 package word
 
-import "time"
+import (
+	"context"
+	"time"
+)
+
+type Service struct {
+	wordStore Store
+}
+
+func NewService(wordStore Store) Service {
+	return Service{
+		wordStore: wordStore,
+	}
+}
 
 // Create создаёт объект Word
-func Create(cw CreateWord, now time.Time) Word {
-	word := ConvertCreateToWord(cw)
-	word.SetNextRepetition(now)
+func (s *Service) Create(ctx context.Context, cw CreateWord, now time.Time) error {
+	word := cw.Create(now)
 
-	return word
+	err := s.wordStore.Create(ctx, word)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func MarkKnown(w Word) Word {
