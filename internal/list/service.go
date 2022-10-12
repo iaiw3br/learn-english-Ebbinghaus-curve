@@ -32,7 +32,7 @@ func (s *Service) Create(cl CreateList) error {
 	for _, cw := range cl.Words {
 		cw.ListID = listID
 
-		w := word.Create(cw, now)
+		w := cw.Create(now)
 		err = s.wordStore.Create(ctx, w)
 		if err != nil {
 			return err
